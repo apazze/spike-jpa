@@ -1,6 +1,7 @@
 package com.example.spikejpa;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -8,8 +9,8 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Pedido pedido;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Pedido> pedido;
 
 
     public Long getId() {
@@ -20,7 +21,7 @@ public class Cliente {
         return nome;
     }
 
-    public Pedido getPedido() {
+    public List<Pedido> getPedido() {
         return pedido;
     }
 }
