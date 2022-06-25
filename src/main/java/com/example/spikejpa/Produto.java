@@ -1,7 +1,8 @@
 package com.example.spikejpa;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import javax.persistence.*;
 @Entity
 public class Produto {
     @Id
@@ -12,6 +13,7 @@ public class Produto {
     @JoinTable(name = "produto_categoria",
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    @JsonBackReference
     private Categoria categoria;
 
     public Long getId() {
@@ -24,5 +26,9 @@ public class Produto {
 
     public Categoria getCategoria() {
         return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

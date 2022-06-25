@@ -1,8 +1,9 @@
 package com.example.spikejpa;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
-
 @Entity
 public class Categoria {
     @Id
@@ -14,6 +15,7 @@ public class Categoria {
     @JoinTable(name = "produto_categoria",
             joinColumns = @JoinColumn(name = "categoria_id"),
             inverseJoinColumns = @JoinColumn(name = "produto_id"))
+    @JsonManagedReference
     private List<Produto> produtos;
 
 
