@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ClienteController {
+public class PrincipalController {
     @Autowired
-    ClienteRepository clienteRepository;
+    PrincipalRepository principalRepository;
 
     @PostMapping(path = "/inserir")
-    public Cliente Inserir(@RequestBody Cliente cliente){
-        return clienteRepository.save(cliente);
+    public Principal Inserir(@RequestBody Principal principal){
+        return principalRepository.save(principal);
     }
 
 }

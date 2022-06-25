@@ -2,5 +2,5 @@ package com.example.spikejpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+public interface PrincipalRepository extends JpaRepository<Principal, Long> {
 }

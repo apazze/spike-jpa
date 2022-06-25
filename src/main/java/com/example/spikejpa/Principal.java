@@ -4,14 +4,13 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Cliente {
+public class Principal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Pedido> pedido;
-
+    private List<Secundaria> secundaria;
 
     public Long getId() {
         return id;
@@ -21,7 +20,7 @@ public class Cliente {
         return nome;
     }
 
-    public List<Pedido> getPedido() {
-        return pedido;
+    public List<Secundaria> getSecundaria() {
+        return secundaria;
     }
 }
