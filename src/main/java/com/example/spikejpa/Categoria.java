@@ -1,9 +1,13 @@
 package com.example.spikejpa;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 public class Categoria {
     @Id
@@ -11,11 +15,10 @@ public class Categoria {
     private Long id;
     private String descricao;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "produto_categoria",
-            joinColumns = @JoinColumn(name = "categoria_id"),
-            inverseJoinColumns = @JoinColumn(name = "produto_id"))
-    @JsonManagedReference
+    public Categoria() {
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
     private List<Produto> produtos;
 
 
@@ -23,9 +26,14 @@ public class Categoria {
         return id;
     }
 
+    public Categoria(String descricao) {
+        this.descricao = descricao;
+    }
+
     public String getDescricao() {
         return descricao;
     }
+
 
     public List<Produto> getProdutos() {
         return produtos;

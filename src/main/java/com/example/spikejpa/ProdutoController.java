@@ -15,7 +15,8 @@ public class ProdutoController {
     CategoriaRepository categoriaRepository;
 
     @PostMapping(path = "/inserir")
-    public Produto Inserir(@RequestBody Produto produto){
+    public Produto Inserir(@RequestBody ProdutoDto produtoDto){
+        Produto produto = ProdutoMapper.ParaProduto(produtoDto);
         Optional<Categoria> categoria = categoriaRepository.findByDescricao(produto.getCategoria().getDescricao());
         if(categoria.isPresent()){
             produto.setCategoria(categoria.get());
